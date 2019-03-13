@@ -1,0 +1,20 @@
+﻿@model WorkWithData.Models.Message
+@{
+    ViewBag.Title = "SendLeter";
+}
+
+<main>
+    <div class="aside">
+        @Html.Partial("~/Views/ManagerOffice/PartialView.cshtml")
+    </div>
+    <article>
+        <form method="post" action="" class="PostBlock">
+            @Html.ValidationSummary(false)
+            <input type="text" name="Text" />
+            <input type="hidden" name="WhoGetUserId" value="@ViewBag.WhoGetUserId" />
+            <input type="submit" value="Отправить" />
+        </form>
+    </article>
+</main>
+
+

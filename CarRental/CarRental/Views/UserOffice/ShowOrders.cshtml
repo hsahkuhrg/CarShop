@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "ShowOrders";
+}
+
+@model List<WorkWithData.Models.Order>
+
+<main>
+    <div class="aside">
+        @Html.Partial("PartialForUserOffice")
+    </div>
+    <article>
+        @foreach (var item in Model)
+        {
+            <div class="CarCard">
+                <div class="img">
+                        <img src="@Url.Content(item.Car.PictureUrl)" />
+                </div>
+                <div class="rightBlock">
+                    <p>
+                        Имя  машины:
+                        @Html.DisplayFor(model => item.Car.Name)
+                    </p>
+                    <br />
+                    <p>
+                        Номер заказа:
+                        @Html.DisplayFor(model => item.Id)
+                    </p>
+                    <br />
+                    <p>
+                        Стоимость:
+                        @Html.DisplayFor(model => item.Price)
+                    </p>
+                    <br />
+                    <p>
+                        Дата начала оренды:
+                        @Html.DisplayFor(model => item.DateTimeIssued)
+                    </p>
+                    <br />
+                    <p>
+                        На сколько часов оренды:
+                        @Html.DisplayFor(model => item.RentHours)
+                    </p>
+                    <br />
+                    @if (item.AcceptOnOrder == null)
+                    {
+                        <p>Заказ в обработке</p>
+                    }
+                    @if (item.AcceptOnOrder == true)
+                    {
+                        <p>Заказ подтверждён</p>
+                    }
+                    @if (item.AcceptOnOrder == false)
+                    {
+                        <p>Заказ откланён</p>
+                    }
+                    <br />
+                    @if (item.Fine != null)
+                    {
+                        <p>
+                            Штраф:
+                            @Html.DisplayFor(model => item.Fine)
+                        </p>
+                    }
+                    <br />
+                    @if (item.Paid == false)
+                    {
+                        <a href="/UserOffice/PayForOrder/@item.Id"> Заплатить </a>
+                    }
+                </div>
+                
+            </div>
+        }
+    </article>
+</main>
+

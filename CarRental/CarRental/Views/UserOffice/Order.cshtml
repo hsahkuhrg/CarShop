@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Order";
+}
+
+@model WorkWithData.Models.Order
+
+<main>
+    <div class="aside">
+        @Html.Partial("PartialForUserOffice")
+    </div>
+    <article>
+        @using (Html.BeginForm())
+        {
+            <fieldset class="CarOrder">
+                @Html.HiddenFor(model => model.ApplicationUserId)
+
+                @Html.HiddenFor(model => model.CarId)
+
+                <p>
+                    Имя  машины<br />
+                    @Html.DisplayFor(model => model.Car.Name)
+                </p>
+
+                <p>
+                    Стоимость  за час<br />
+                    @Html.DisplayFor(model => model.Car.CostForOneHour)
+                </p>
+
+                <p>
+                    Класс <br />
+                    @Html.DisplayFor(model => model.Car.QualityClass.Name)
+                </p>
+
+                <p>
+                    Бренд <br />
+                    @Html.DisplayFor(model => model.Car.CarBrand.Name)
+                </p>
+
+                <p>
+                    Дата начала оренды<br />
+                    @Html.EditorFor(model => model.DateTimeIssued)
+                </p>
+
+                <p>
+                    Нужен водитель<br />
+                    @Html.EditorFor(model => model.NeedDriver)
+                </p>
+
+                <p>
+                    На сколько часов оренды<br />
+                    @Html.EditorFor(model => model.RentHours)
+                </p>
+
+                <p>
+                    <input class="button" type="submit" value="Заказать машину" />
+                </p>
+            </fieldset>
+        }
+    </article>
+</main>

@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "UserInfo";
+    var user = ViewBag.ApplicationUser;
+}
+
+@model List<WorkWithData.Models.Order>
+
+<main>
+    <div class="aside">
+        @Html.Partial("~/Views/ManagerOffice/PartialView.cshtml")
+    </div>
+    <article>
+        <div class="PostBlock">
+            <div>
+                Электронный адрес
+                <div>
+                    @user.Email
+                </div>
+            </div>
+
+            <div>
+                Фамилия
+                <div>
+                    @user.Surname
+                </div>
+            </div>
+
+            <div>
+                Имя
+                <div>
+                    @user.ApplicationUserRealName
+                </div>
+            </div>
+
+            <div>
+                Имя учетной записи
+                <div>
+                    @user.UserName
+                </div>
+            </div>
+
+            <div>
+                Возвраст
+                <div>
+                    @user.Year
+                </div>
+            </div>
+            <a href="/ManagerOffice/SendLeter/@user.Id">Написать пользователю</a>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="PostBlock">
+
+                <a href="/ManagerOffice/UpdateOrder/@item.Id">Обновить заказ</a>
+
+                <p>
+                    Имя  машины<br />
+                    @Html.DisplayFor(model => item.Car.Name)
+                </p>
+
+                <p>
+                    Стоимость  за час<br />
+                    @Html.DisplayFor(model => item.Car.CostForOneHour)
+                </p>
+
+                <p>
+                    Дата начала оренды<br />
+                    @Html.DisplayFor(model => item.DateTimeIssued)
+                </p>
+
+                @if (item.NeedDriver)
+                {
+                    <p>Нужен водитель</p>
+                }
+
+                <p>
+                    На сколько часов оренды<br />
+                    @Html.DisplayFor(model => item.RentHours)
+                </p>
+
+                <p>Согласие на заказ</p>
+                @if (item.AcceptOnOrder == null)
+                {
+                    <p>Нужно обработать</p>
+                }
+                else if (item.AcceptOnOrder == true)
+                {
+                    <p>Разрешено</p>
+                }
+                else
+                {
+                    <p>Запрещено</p>
+                }
+
+                <p>Оплата</p>
+                @if (item.Paid == true)
+                {
+                    <p>оплачено</p>
+                }
+                else
+                {
+                    <p>не оплачено</p>
+                }
+
+                <p>Положение машины</p>
+                @if (item.IsReturned == null)
+                {
+                    <p>Не выдано</p>
+                }
+                else if (item.IsReturned == false)
+                {
+                    <p>У клиента</p>
+                }
+                else
+                {
+                    <p>Возвращено</p>
+                }
+
+                <p>Штрафные санкции</p>
+                @if (item.Fine == null)
+                {
+                    <p>Нет</p>
+                }
+                else
+                {
+                    <p>@item.Fine</p>
+                }
+            </div>
+            <br />
+        }
+    </article>
+</main>

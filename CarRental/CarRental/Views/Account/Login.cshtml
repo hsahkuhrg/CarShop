@@ -1,0 +1,33 @@
+﻿@model WorkWithData.Models.LoginModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Login";
+}
+
+<main>
+    <div class="cover">
+        <div class="Login">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div>
+                    @Html.ValidationSummary()
+                    <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+                    <p>
+                        <label>Имя учетной записи</label><br />
+                        @Html.EditorFor(x => x.UserName)
+                    </p>
+                    <p>
+                        <label>Пароль</label><br />
+                        @Html.EditorFor(x => x.Password)
+                    </p>
+                    <br />
+                    <p><button type="submit">Войти</button></p>
+                    <br />
+                    @Html.ActionLink("Забыли пароль?", "ForgotPassword", "Account")
+                </div>
+            }
+        </div>
+    </div>
+</main>

@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "BillPage";
+}
+
+@model WorkWithData.Models.Order
+
+<main>
+    <div class="aside">
+        @Html.Partial("PartialForUserOffice")
+    </div>
+    <article>
+        <p>@ViewBag.OrderInfo</p>
+        <p>Цена @Model.Price</p>
+        <a href="/UserOffice/PayForOrder/@Model.Id">Заплатить</a>
+    </article>
+</main>
+

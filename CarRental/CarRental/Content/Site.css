@@ -1,0 +1,212 @@
+﻿/*body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+ Set padding to keep content from hitting the edges 
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+Set width on the form input elements since they're 100% wide by default 
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.photo{
+    width: 1200px;
+    height: 627px;
+}
+*/
+
+
+* {
+    box-sizing: border-box;
+}
+
+html, body, nav, header, main, article, footer, div, span, h1, h2, h3, h4, h5, h6, p, a, ul, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+body {
+    min-width: 967px;
+    font-family: Verdana, Arial, sans-serif;
+    background-color: white;
+}
+
+main {
+    padding-top: 50px;
+    background-color: #f7f7f7;
+    min-height: calc(100vh - 50px);
+}
+
+main label {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.aside {
+    float: left;
+    width: 20%;
+    padding: 0 10px 0 20px;
+}
+
+article{
+    background-color: white;
+    border-left: 1px solid #ccc;
+    margin-left: 20%;
+    padding: 15px;
+    width: 80%;
+    min-height: calc(100vh - 100px);
+}
+
+/*CarCard*/
+
+.CarCard {
+    width: 100%;
+    display: flex; /*!*/
+    flex-direction: row;
+    /*min-height: 600px;*/
+    height: 340px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 20px;
+}
+
+.CarCard .img {
+    width: 40%;
+    height: 300px;
+    overflow: hidden;
+    background-size: cover;
+}
+
+.CarCard .img img {
+    width: auto;
+    height: 100%;
+}
+
+.CarCard .rightBlock {
+    width: 60%;
+    padding: 20px;
+}
+
+.CarCard .rightBlock p {
+    display: inline-block;
+    margin: 8px;
+}
+
+.CarCard .rightBlock a:hover {
+    background-color: rgb(22, 21, 21);
+    color: white;
+    border: none;
+    padding: 8px 15px 9px 15px;
+    border-radius: 5px;
+    margin-left: 50%;
+    text-decoration: none;
+}
+
+.CarCard .rightBlock a {
+    background-color: #f7f7f7;
+    color: black;
+    border: none;
+    padding: 8px 15px 9px 15px;
+    border-radius: 5px;
+    margin-left: 50%;
+    text-decoration: none;
+}
+
+.rightPage {
+    float: left;
+    margin-left: 37%;
+}
+
+.leftPage {
+    float: right;
+    margin-right: 37%;
+}
+
+.pagin {
+    height: 30px;
+}
+
+a {
+        text-decoration: none;
+        color: black;
+}
+
+.pagin :after {
+        content: " ";
+        display: table;
+        clear: both;
+}
+
+/*CarOrder*/
+
+.CarOrder {
+    width: 30%;
+    margin-left: 30%;
+    border-style: none;
+}
+
+.CarOrder .button {
+        background-color: #f7f7f7;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #ccc;
+        color: black;
+        padding: 12px 20px 10px 20px;
+        border-radius: 5px;
+        margin-top: 10%;
+}
+
+/*Post*/
+
+.PostBlock {
+    width: 100%;
+    height: auto;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 20px;
+}
+
+footer {
+    background-color: #222;
+    height: 50px;
+    display: flex;
+}
+
+    footer .date {
+        display: flex;
+        text-align: center;
+        margin: auto;
+    }
+
+/*Login*/
+
+.cover {
+    display: flex;
+    min-height: calc(100vh - 100px);
+}
+
+.Login {
+    margin: auto;
+    display: flex;
+    text-align: center;
+}

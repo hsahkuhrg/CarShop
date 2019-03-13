@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "DeleteCar";
+}
+
+@model WorkWithData.Models.Car
+
+<main>
+    <div class="aside">
+        @Html.Partial("~/Views/AdminOffice/PartialForAdminOffice.cshtml")
+    </div>
+    <article>
+        <div class="PostBlock">
+            <h2>Удаление машины</h2>
+            <dl>
+                <dt>Название</dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>Цена за час</dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CostForOneHour)
+                </dd>
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                <input type="submit" value="Удалить" />
+            }
+        </div>
+    </article>
+</main>

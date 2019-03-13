@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "UpdateOrder";
+}
+
+@model WorkWithData.Models.Order
+
+<main>
+    <div class="aside">
+        @Html.Partial("~/Views/ManagerOffice/PartialView.cshtml")
+    </div>
+    <article>
+        @using (Html.BeginForm())
+        {
+            <fieldset class="PostBlock">
+                @Html.HiddenFor(model => model.ApplicationUserId)
+
+                @Html.HiddenFor(model => model.CarId)
+
+                @Html.HiddenFor(model => model.Id)
+
+                @Html.ValidationSummary(false)
+
+                <p>
+                    Имя  машины<br />
+                    @Html.DisplayFor(model => model.Car.Name)
+                </p>
+
+                <p>
+                    Стоимость  за час<br />
+                    @Html.DisplayFor(model => model.Car.CostForOneHour)
+                </p>
+
+                <p>
+                    Стоимость<br />
+                    <input name="Price" type="number" value="@Model.Price" readonly />
+                </p>
+
+                <p>
+                    Дата начала оренды<br />
+                    <input name="DateTimeIssued" type="datetime" value="@Model.DateTimeIssued" readonly />
+                </p>
+
+                <p>
+                    Нужен водитель<br />
+                    @Html.EditorFor(model => model.NeedDriver)
+                </p>
+
+                <p>
+                    На сколько часов оренды<br />
+                    <input name="RentHours" type="number" value="@Model.RentHours" readonly />
+                </p>
+
+                <p>
+                    Оплата<br />
+                    @Html.EditorFor(model => model.Paid)
+
+                </p>
+
+                <p>
+                    Согласие на заказ <br />
+                    @Html.DropDownListFor(model => model.AcceptOnOrder, ViewBag.AcceptString as SelectList)
+                </p>
+
+                <p>
+                    Положение машины<br />
+                    @Html.DropDownListFor(model => model.IsReturned, ViewBag.ReturnedString as SelectList)
+                </p>
+
+                <p>
+                    Штрафные санкции <br />
+                    @Html.EditorFor(model => model.Fine)
+                </p>
+
+                <p>
+                    <input type="submit" value="Обновить" />
+                </p>
+            </fieldset>
+        }
+    </article>
+</main>

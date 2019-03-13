@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "CarsList";
+}
+
+@model WorkWithData.Models.CarsListViewModel
+
+    <main>
+        <form method="get" class="aside">
+            <div class="form-inline">
+                <label class="control-label" for="carbrand">Бренд: </label>
+                @Html.DropDownList("carbrand", Model.CarBrand as SelectList,
+                    htmlAttributes: new { @class = "form-control", @id = "carbrand" })
+                <br>
+                <label class="control-label" for="qualityclas">Класс: </label>
+                @Html.DropDownList("qualityclas", Model.QualityClas as SelectList,
+                htmlAttributes: new { @class = "form-control", @id = "qualityclas" })
+                <br>
+                <label class="control-label" for="sorttype1">Сортировать по возростающей цене: </label>
+                <input name="sorttype" id="sorttype1" type="radio" value="SortByPriceFromMin" />
+                <br>
+                <label class="control-label" for="sorttype2">Сортировать по убывающей цене: </label>
+                <input name="sorttype" id="sorttype2" type="radio" value="SortByPriceFromMax" />
+                <br>
+                <label class="control-label" for="sorttype3">Сортировать по названию автомобиля от A: </label>
+                <input name="sorttype" id="sorttype3" type="radio" value="SortByNameFromA" />
+                <br>
+                <label class="control-label" for="sorttype4">Сортировать по названию автомобиля от Z: </label>
+                <input name="sorttype" id="sorttype4" type="radio" value="SortByNameFromZ" />
+                <br>
+                <input type="submit" value="Применить" class="btn" />
+            </div>
+        </form>
+        <article>
+            @foreach (var item in Model.Cars)
+            {
+                <div class="CarCard">
+                    <div class="img">
+                        <img src="@Url.Content(item.PictureUrl)" />
+                    </div>
+                    <div class="rightBlock">
+                        <p>Имя: @Html.DisplayFor(modelItem => item.Name)</p>
+                        <br />
+                        <p>Бренд: @Html.DisplayFor(modelItem => item.CarBrand.Name)</p>
+                        <br />
+                        <p>Класс: @Html.DisplayFor(modelItem => item.QualityClass.Name)</p>
+                        <br />
+                        <p>Стоимость за час: @Html.DisplayFor(modelItem => item.CostForOneHour) грн</p>
+                        <br />
+                        <a href="/UserOffice/Order/@item.Id">Заказать</a>
+                    </div>
+                </div>
+            }
+            <div class="pagin">
+                @if (Model.PageInfo.PageNumber > 1)
+                {
+                    int page = Model.PageInfo.PageNumber - 1;
+                    <a href="@Url.Action("CarsList", new { carbrand = 0, qualityclas = 0, sorttype = " ", page = page })" class="rightPage">PreviousPage</a>
+                }
+
+                @if (Model.PageInfo.PageNumber < Model.PageInfo.TotalPages)
+                {
+                    int page = Model.PageInfo.PageNumber + 1;
+                    <a href="@Url.Action("CarsList", new { carbrand = 0, qualityclas = 0, sorttype = " ", page = page })" class="leftPage">NextPage</a>
+                }
+            </div>
+        </article>
+    </main>

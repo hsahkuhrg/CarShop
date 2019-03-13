@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "EditCar";
+    SelectList[] selectLists = ViewBag.QualityClassAndBrands;
+}
+
+@model WorkWithData.Models.Car
+
+<main>
+    <div class="aside">
+        @Html.Partial("~/Views/AdminOffice/PartialForAdminOffice.cshtml")
+    </div>
+    <article>
+        @using (Html.BeginForm("EditCar", "AdminOffice", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <fieldset class="PostBlock">
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.PictureUrl)
+
+                @Html.ValidationSummary(false)
+                <br />
+                <p>
+                    Имя  машины<br />
+                    @Html.EditorFor(model => model.Name)
+                </p>
+
+                <p>
+                    Стоимость <br />
+                    @Html.EditorFor(model => model.CostForOneHour)
+                </p>
+
+                <p>
+                    Количество <br />
+                    @Html.EditorFor(model => model.CountOfCars)
+                </p>
+
+                <p>
+                    Класс <br />
+                    @Html.DropDownListFor(model => model.QualityClassId, selectLists[1])
+                </p>
+
+                <p>
+                    Бренд <br />
+                    @Html.DropDownListFor(model => model.CarBrandId, selectLists[0])
+                </p>
+                <br />
+                <p>
+                    <input type="file" name="upload" />
+                </p>
+                <br />
+                <p>
+                    <input type="submit" value="Изменить машину" />
+                </p>
+            </fieldset>
+        }
+    </article>
+</main>

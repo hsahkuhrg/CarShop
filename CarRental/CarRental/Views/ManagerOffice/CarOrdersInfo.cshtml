@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "CarOrdersInfo";
+}
+
+@model List<WorkWithData.Models.Order>
+
+<main>
+    <div class="aside">
+        @Html.Partial("~/Views/ManagerOffice/PartialView.cshtml")
+    </div>
+    <article>
+        @foreach (var item in Model)
+        {
+            <div class="PostBlock">
+                <div>
+                    <label>Дата начала оренды: </label>
+                    @Html.DisplayFor(model => item.DateTimeIssued)
+                </div>
+                <div>
+                    <label>На сколько часов оренды: </label>
+                    @Html.DisplayFor(model => item.RentHours)
+                </div>
+            </div>
+        }
+    </article>
+</main>

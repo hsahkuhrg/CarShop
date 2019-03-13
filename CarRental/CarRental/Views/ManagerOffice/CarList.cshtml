@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "CarList";
+}
+
+@model WorkWithData.Models.CarsListViewModel
+
+<main>
+    <div class="aside">
+        @Html.Partial("~/Views/ManagerOffice/PartialView.cshtml")
+        <br />
+        <form method="get" action="/ManagerOffice/CarList">
+            <div class="form-inline">
+                <label class="control-label">Бренд: </label>
+                @Html.DropDownList("carbrand", Model.CarBrand as SelectList,
+                            htmlAttributes: new { @class = "form-control" })
+                <br />
+                <label class="control-label">Класс: </label>
+                @Html.DropDownList("qualityclas", Model.QualityClas as SelectList,
+                        htmlAttributes: new { @class = "form-control" })
+                <br />
+                <label class="control-label">Сортировать по возростающей цене: </label>
+                <input name="sorttype" type="radio" value="SortByPriceFromMin" />
+                <br />
+                <label class="control-label">Сортировать по убывающей цене: </label>
+                <input name="sorttype" type="radio" value="SortByPriceFromMax" />
+                <br />
+                <label class="control-label">Сортировать по названию автомобиля от A: </label>
+                <input name="sorttype" type="radio" value="SortByNameFromA" />
+                <br />
+                <label class="control-label">Сортировать по названию автомобиля от Z: </label>
+                <input name="sorttype" type="radio" value="SortByNameFromZ" />
+                <br />
+                <input type="submit" value="Применить" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+    <article>
+        @foreach (var item in Model.Cars)
+        {
+            <div class="PostBlock">
+                <p>Имя: @Html.DisplayFor(modelItem => item.Name)</p>
+                <br />
+                <p>Бренд: @Html.DisplayFor(modelItem => item.CarBrand.Name)</p>
+                <br />
+                <p>Класс: @Html.DisplayFor(modelItem => item.QualityClass.Name)</p>
+                <br />
+                <p>Стоимость за час: @Html.DisplayFor(modelItem => item.CostForOneHour) грн</p>
+                <br />
+                <p>Количество: @Html.DisplayFor(modelItem => item.CountOfCars)</p>
+                <br />
+                <a href="/ManagerOffice/CarOrdersInfo/@item.Id">Информация о заказах на эту машину</a>
+            </div>
+        }
+    </article>
+</main>

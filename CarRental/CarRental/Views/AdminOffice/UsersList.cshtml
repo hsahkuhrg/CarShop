@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "UsersList";
+}
+
+@model List<WorkWithData.Models.ApplicationUser>
+
+<main>
+    <div class="aside">
+        @Html.Partial("~/Views/AdminOffice/PartialForAdminOffice.cshtml")
+    </div>
+    <article>
+        @foreach (var item in Model)
+        {
+            <div class="PostBlock">
+                <div>
+                    Электронный адрес
+                    <div>
+                        @Html.DisplayFor(model => item.Email)
+                    </div>
+                </div>
+
+                <div>
+                    Фамилия
+                    <div>
+                        @Html.DisplayFor(model => item.Surname)
+                    </div>
+                </div>
+
+                <div>
+                    Имя
+                    <div>
+                        @Html.DisplayFor(model => item.ApplicationUserRealName)
+                    </div>
+                </div>
+
+                <div>
+                    Имя учетной записи
+                    <div>
+                        @Html.DisplayFor(model => item.UserName)
+                    </div>
+                </div>
+
+                <div>
+                    Возвраст
+                    <div>
+                        @Html.DisplayFor(model => item.Year)
+                    </div>
+                </div>
+                <br />
+                @if (item.IsBlocked)
+                {
+                <a href="/AdminOffice/AnBlockUser/@item.Id">AnBlockUser</a>
+                }
+                else
+                {
+                <a href="/AdminOffice/BlockUser/@item.Id">BlockUser</a>
+                }
+
+                <br />
+            </div>
+        }
+    </article>
+</main>
